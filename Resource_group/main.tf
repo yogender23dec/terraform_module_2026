@@ -1,4 +1,4 @@
-resource "azurerm_resource_group" "rg-test" {
+resource "azurerm_resource_group" "rg-test1" {
   name       = var.rg_name1
   location   = "central india"
   managed_by = "we are devops learner"
@@ -20,8 +20,8 @@ resource "azurerm_resource_group" "rg-dev" {
 
 resource "azurerm_storage_account" "storage-test1" {
   name                     = var.bhakuastorage123
-  resource_group_name      = azurerm_resource_group.rg-test.name
-  location                 = azurerm_resource_group.rg-test.location
+  resource_group_name      = azurerm_resource_group.rg-test1.name
+  location                 = azurerm_resource_group.rg-test1.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
   tags = {

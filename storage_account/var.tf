@@ -1,7 +1,8 @@
-variable "rg-test1"{
+variable "storage"{
   type = map(object({
-    rg_name = string
-    location = string
-    storage_name = string
+    name = string
+    tier             = string
+  replication= string
+  location = string
   }))
 }

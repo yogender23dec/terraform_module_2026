@@ -1,22 +1,30 @@
-module "rgs" {
-    source = "../../Resource_group"
-    rgname = var.rgname
+module "resource_group" {
+  source = "../../Module/Resource_Group"
+  rgname = var.rgname
 }
 
-module "storage_account" {
-    depends_on = [module.rgs]
-    source = "../../storage_account"
-    storage = var.storage
+module "storageaccount" {
+  
+depends_on = [module.resource_group]
+source = "../../Module/Storage_account"
+
+ storages = var.storages
+
 }
 
-module "nsg" {
-    depends_on = [module.rgs]
-    source = "../../NSG"
-    nsg = var.nsg
+module "vnet_module" {
+  depends_on = [module.resource_group]
+  source     = "../../Module/Vnet_group"
+  vnets      = var.vnets
+
 }
 
-module "vnet" {
-    depends_on = [module.nsg]
-    source = "../../Vnet_group"
-    vnet_tcs = var.vnet_tcs
+module "subnetmod1" {
+  for_each   = var.subnets
+  depends_on = [module.vnet_module]
+  source     = "../../Module/Subnet"
+  subnets    = var.subnets
+
 }
+
+

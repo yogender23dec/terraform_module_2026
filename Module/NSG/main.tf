@@ -1,10 +1,10 @@
 # for network security group 
-resource "azurerm_network_security_group" "nsg_foreach" {
+resource "azurerm_network_security_group" "nsgblock" {
 
-  for_each            = var.nsg
-  name                = "nsg-${each.value.name}"
-  resource_group_name = "rg-${each.value.name}"
-  location            = each.value.location
+  for_each           = var.nsg
+  name               = "nsg-${each.value.nsg_name}"
+  resource_group_name = var.resource_group_name
+  location           = each.value.location
 
   dynamic "security_rule" {
     for_each = each.value.security_rule

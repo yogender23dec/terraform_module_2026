@@ -1,7 +1,8 @@
 variable "nsg" {
   type = map(object({
-    name     = string
-    location = string
+    nsg_name               = string
+    resource_group_name = string
+    location           = string
     security_rule = map(object({
       name                       = string
       priority                   = number
@@ -15,3 +16,8 @@ variable "nsg" {
     }))
   }))
 }
+
+variable "resource_group_name" {
+  type = string
+}
+

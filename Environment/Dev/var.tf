@@ -1,23 +1,47 @@
 variable "rgname" {
+
   type = map(object({
-    name     = string
+    rg_name  = string
     location = string
   }))
 }
 
-variable "storage"{
+variable "storages" {
+  
   type = map(object({
-    name = string
-    tier             = string
-  replication= string
-  location = string
+    storage_name        = string
+        resource_group_key = string
+    location            = string
+    account_tier        = string
+    replication_type    = string
+  }))
+}
+
+variable "vnets" {
+
+  type = map(object({
+    vnet_name          = string
+    resource_group_key = string
+    location           = string
+    address_space      = list(string)
+    dns                = list(string)
+  }))
+}
+
+variable "subnets" {
+  type = map(object({
+    subnet_name         = string
+    resource_group_name  = string
+    virtual_network_name = string
+    address_prefixes    = list(string)
   }))
 }
 
 variable "nsg" {
   type = map(object({
-    name     = string
-    location = string
+    nsg_name               = string
+    resource_group_name = string
+    location           = string
     security_rule = map(object({
       name                       = string
       priority                   = number
@@ -32,16 +56,4 @@ variable "nsg" {
   }))
 }
 
-variable "vnet_tcs" {
-  type = map(object({
-    vnet_name     = string
-    location = string
-    address_space = list(string)
-    dns_server1   = list(string)
-    subnet = map(object({
-      name             = string
-      address_prefixes = list(string)
-      security_group   = string
-    }))
-  }))
-}
+

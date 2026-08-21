@@ -7,6 +7,10 @@ rgname = {
     rg_name     = "hcl-prod"
     location = "West Us"
   }
+  rg3 = {
+    rg_name = "rg-yogender"
+    location = "Central India"
+  }
 }
 
 storages = {
